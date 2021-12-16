@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar, Collapse, Grow } from "@material-ui/core";
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
   },
   appbarTitle: {
-    flexGrow: '1',
     fontSize: '2.5rem'
   },
   container: {
@@ -28,22 +27,27 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: '#fff',
-    flexGrow: '1',
     fontSize: '5rem'
   },
   colorText: {
     color: '#ff4d6d'
   },
   goDown: {
-    color: '#ff4d6d'
+    color: '#ff4d6d',
   }
 }));
 
 function Header() {
   const classes = useStyles();
+
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setChecked(true);
+  }, [])
+
   return(
     <div className={classes.root}>
-
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.appbarWrapper}>
           <h1 className={classes.appbarTitle}>
@@ -53,12 +57,24 @@ function Header() {
       </AppBar>
 
       <div className={classes.container}>
-        <h1 className={classes.title}>
-          Peace <span className={classes.colorText}>Love </span>Holla
-        </h1>
-        <KeyboardArrowDownRoundedIcon className={classes.goDown} fontSize='large'/>
-      </div>
+        <Collapse
+          in={checked}
+          style={{transformOrigin: '0 0 0'}}
+          {...(checked ? {timeout: 1000} : {})}
+        >
+          <h1 className={classes.title}>
+            Peace <span className={classes.colorText}>Love </span>Holla
+          </h1>
+        </Collapse>
 
+        <Grow
+          in={checked}
+          style={{transformOrigin: '0 0 0'}}
+          {...(checked ? {timeout: 1000} : {})}
+        >
+          <KeyboardArrowDownRoundedIcon className={classes.goDown} fontSize='large'/>
+        </Grow> 
+      </div> 
     </div>
   )
 }
