@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -17,6 +17,9 @@ const useStyles = makeStyles({
   },
   media: {
     height: 400
+  },
+  content: {
+    marginTop: '1.5rem'
   }
 });
 
@@ -30,23 +33,28 @@ export default function WeatherCard() {
           className={classes.card}
           style={{background: 'rgba(0, 0, 0, 0.2)'}}
         >
+        <div className={classes.media}>
           <CardMedia
-            className={classes.media}
-            image= {process.env.PUBLIC_URL + '/assets/bg.jpg'}
-            alt="weather"
-          />
+              component= 'img'
+              image= {process.env.PUBLIC_URL + '/assets/hummingbird.jpg'}
+              alt= 'weather'
+            />
+        </div>
+        <div className={classes.content}>
           <CardContent>
             <Typography 
-            style={{fontSize: '3rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#edf2f4'}}
+              style={{fontSize: '3rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#edf2f4'}}
             >
               Today's Weather
             </Typography>
             <Typography
-            style={{ fontSize: '1.8rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#f08080'}}
+              style={{ fontSize: '1.8rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#f08080'}}
             >
-              Expect mostly cloudy weather with scattered showers
+              Expect mostly cloudy weather with scattered showers.
             </Typography>
           </CardContent>
+        </div>
+          
         </Card>
       </div>
       
