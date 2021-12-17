@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    [theme.breakpoints.down('md')]: {flexDirection: 'column'}
   }
 }));
 
@@ -18,7 +19,7 @@ function Weather() {
   const checked = useWindowPosition('header');
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id='weather'>
       <WeatherCard weather={staticWeather[0]} checked={checked}/>
       <WeatherCard weather={staticWeather[1]} checked={checked}/>
     </div>

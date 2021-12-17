@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Collapse, Grow } from "@material-ui/core";
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import { Link as Scroll } from 'react-scroll';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,15 +65,18 @@ function Header() {
           </h1>
         </Collapse>
 
-        <Grow
-          in={checked}
-          style={{transformOrigin: '0 0 0'}}
-          {...(checked ? {timeout: 1000} : {})}
-        >
-          <KeyboardArrowDownRoundedIcon
-            style={{fontSize: '6.5rem', color: '#ff4d6d'}}
-          />
-        </Grow> 
+        <Scroll to='weather' smooth={true}>
+          <Grow
+            in={checked}
+            style={{transformOrigin: '0 0 0'}}
+            {...(checked ? {timeout: 1000} : {})}
+          >
+            <KeyboardArrowDownRoundedIcon
+              style={{fontSize: '6.5rem', color: '#ff4d6d'}}
+            />
+          </Grow> 
+        </Scroll>
+        
       </div> 
     </div>
   )
