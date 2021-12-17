@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import Header from './components/Header';
-
+import Bio from './components/Bio';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +19,7 @@ function App() {
     <div className={classes.root}>
       <CssBaseline />
       <Header />
+      <Bio />
     </div>
   );
 }

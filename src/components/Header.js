@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Indie Flower',
   },
   appbar: {
-    background: 'none',
+    background: 'rgba(0, 0, 0, 0.4)',
     fontFamily: 'Indie Flower',
   },
   appbarWrapper: {
@@ -26,14 +26,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center'
   },
   title: {
-    color: '#fff',
-    fontSize: '5rem'
+    color: '#edf2f4',
+    fontSize: '5.5rem'
   },
   colorText: {
     color: '#ff4d6d'
-  },
-  goDown: {
-    color: '#ff4d6d',
   }
 }));
 
@@ -72,7 +69,9 @@ function Header() {
           style={{transformOrigin: '0 0 0'}}
           {...(checked ? {timeout: 1000} : {})}
         >
-          <KeyboardArrowDownRoundedIcon className={classes.goDown} fontSize='large'/>
+          <KeyboardArrowDownRoundedIcon
+            style={{fontSize: '6.5rem', color: '#ff4d6d'}}
+          />
         </Grow> 
       </div> 
     </div>
