@@ -4,12 +4,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Collapse } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: '2.5rem'
   },
   card: {
     maxWidth: 600,
@@ -23,41 +25,46 @@ const useStyles = makeStyles({
   }
 });
 
-export default function WeatherCard() {
+export default function WeatherCard({ weather, checked }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <div className={classes.card}>
-        <Card
-          className={classes.card}
-          style={{background: 'rgba(0, 0, 0, 0.2)'}}
-        >
-        <div className={classes.media}>
-          <CardMedia
-              component= 'img'
-              image= {process.env.PUBLIC_URL + '/assets/hummingbird.jpg'}
-              alt= 'weather'
-            />
+    <Collapse 
+      in={checked}
+      style={{transformOrigin: '0 0 0'}}
+      {...(checked ? {timeout: 1000} : {})}
+    >
+      <div className={classes.root}>
+        <div className={classes.card}>
+          <Card
+            className={classes.card}
+            style={{background: 'rgba(0, 0, 0, 0.2)'}}
+          >
+          <div className={classes.media}>
+            <CardMedia
+                component= 'img'
+                image= {weather.imageUrl}
+                alt= 'weather'
+                style={{background: 'rgba(0, 0, 0, 0.2)'}}
+              />
+          </div>
+          <div className={classes.content}>
+            <CardContent>
+              <Typography 
+                style={{fontSize: '2rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#edf2f4'}}
+              >
+                {weather.title}
+              </Typography>
+              <Typography
+                style={{ fontSize: '1.2rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#f08080'}}
+              >
+                {weather.description}
+              </Typography>
+            </CardContent>
+          </div>
+          </Card>
         </div>
-        <div className={classes.content}>
-          <CardContent>
-            <Typography 
-              style={{fontSize: '3rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#edf2f4'}}
-            >
-              Today's Weather
-            </Typography>
-            <Typography
-              style={{ fontSize: '1.8rem', fontFamily: 'Nunito', fontWeight: 'bold', color: '#f08080'}}
-            >
-              Expect mostly cloudy weather with scattered showers.
-            </Typography>
-          </CardContent>
-        </div>
-          
-        </Card>
       </div>
-      
-    </div>
+    </Collapse>
   );
 }
