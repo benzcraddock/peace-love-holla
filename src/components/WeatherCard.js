@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Collapse } from "@material-ui/core";
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,19 @@ const useStyles = makeStyles({
 
 export default function WeatherCard({ weather, checked }) {
   const classes = useStyles();
+
+  const url = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=';
+  const apikey = '9efb6c97e8e268c9ce4f3b1e5deb0731';
+
+  useEffect(() => {
+    axios.get(`${url}${apikey}`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  })
 
   return (
     <Collapse 
